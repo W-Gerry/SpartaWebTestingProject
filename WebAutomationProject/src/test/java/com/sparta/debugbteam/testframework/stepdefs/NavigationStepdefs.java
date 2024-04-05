@@ -1,9 +1,6 @@
 package com.sparta.debugbteam.testframework.stepdefs;
 
-//import com.sparta.debugbteam.testframework.lib.pages.HomePage;
-//import com.sparta.debugbteam.testframework.lib.pages.PastPage;
-//import com.sparta.debugbteam.testframework.lib.pages.SearchPage;
-//import com.sparta.debugbteam.testframework.lib.pages.LoginPage;
+import com.sparta.debugbteam.testframework.lib.pages.HomePage;
 
 import io.cucumber.java.*;
 import io.cucumber.java.en.*;
@@ -23,10 +20,7 @@ public class NavigationStepdefs {
     private static ChromeDriverService service;
     private WebDriver webDriver;
 
-//    private HomePage homePage;
-//    private PastPage pastPage;
-//    private SearchPage searchPage;
-//    private LoginPage loginPage;
+    private HomePage homePage;
 
     public static ChromeOptions getChromeOptions() {
         ChromeOptions options = new ChromeOptions();
@@ -67,15 +61,19 @@ public class NavigationStepdefs {
 
     @Given("I am on the Luma website")
     public void iAmOnTheLumaWebsite() {
+        webDriver.get(BASE_URL);
+        homePage = new HomePage(webDriver);
     }
 
     // Navigate to the homepage
     @When("I navigate to the homepage")
     public void iNavigateToTheHomepage() {
+        homePage.goToHomePage();
     }
 
     @Then("I should see the homepage")
     public void iShouldSeeTheHomepage() {
+        MatcherAssert.assertThat(webDriver.getCurrentUrl(), Matchers.equalTo(BASE_URL));
     }
 
     // Navigate to the What's New page

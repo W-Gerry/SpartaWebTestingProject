@@ -16,4 +16,10 @@ public class HomePage {
         }
         this.webDriver = webDriver;
     }
+
+    public HomePage goToHomePage() {
+        webDriver.findElement(By.linkText("home")).click();
+        return new HomePage(webDriver);
+    }
+
 }
