@@ -1,6 +1,7 @@
 package com.sparta.debugbteam.testframework.stepdefs;
 
 import com.sparta.debugbteam.testframework.lib.pages.LoginPage;
+import io.cucumber.java.After;
 import io.cucumber.java.AfterAll;
 import io.cucumber.java.Before;
 import io.cucumber.java.BeforeAll;
@@ -50,10 +51,10 @@ public class LoginStepDefs {
         webDriver = new RemoteWebDriver(service.getUrl(), getChromeOptions());
     }
 
-//    @After
-//    public void afterEach() {
-//        webDriver.quit();
-//    }
+    @After
+    public void afterEach() {
+        webDriver.quit();
+    }
 
     @AfterAll
     static void afterAll() {
@@ -87,11 +88,13 @@ public class LoginStepDefs {
     }
 
     @When("The user enters valid username {string} and valid password {string}")
-    public void theUserEntersValidUsernameAndValidPassword(String arg0, String arg1) {
+    public void theUserEntersValidUsernameAndValidPassword(String arg0, String arg1) throws InterruptedException {
+        loginPage = new LoginPage(webDriver);
+        loginPage.login("testaccount@mail.com", "Password1!");
     }
 
     @Then("The user should be redirected to the Luma store homepage")
     public void theUserShouldBeRedirectedToTheLumaStoreHomepage() {
+        MatcherAssert.assertThat(loginPage.checkLoginIsValid(), is(true));
     }
-
 }
