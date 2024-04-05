@@ -8,15 +8,15 @@ public class LoginPage {
     private final WebDriver webDriver;
 
     public LoginPage(WebDriver webDriver) {
-        if (webDriver.getCurrentUrl().contains("https://magento.softwaretestingboard.com/customer/account/create/")) {
-            this.webDriver = webDriver;
+        if (!webDriver.getCurrentUrl().contains("customer/account/")) {
+            throw new IllegalStateException("This is not the Login Page," +
+                    " current page is: " + webDriver.getCurrentUrl());
         }
-        else if (webDriver.getCurrentUrl().contains("https://magento.softwaretestingboard.com/customer/account/login/")){
-            this.webDriver = webDriver;
-        }
-        throw new IllegalStateException("This is not the Login Page," +
-                " current page is: " + webDriver.getCurrentUrl());
+        this.webDriver = webDriver;
+
     }
+
+
     public LoginPage login(String username, String password) throws InterruptedException {
         webDriver.findElement(By.id("email")).sendKeys(username, Keys.TAB);
         Thread.sleep(200);
@@ -39,5 +39,9 @@ public class LoginPage {
 
     public String getText(){
         return webDriver.findElement(By.tagName("body")).getText();
+    }
+
+    public String getTitle() {
+        return webDriver.getTitle();
     }
 }
