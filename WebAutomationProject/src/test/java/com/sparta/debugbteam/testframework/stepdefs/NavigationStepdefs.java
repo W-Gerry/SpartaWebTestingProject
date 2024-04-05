@@ -19,7 +19,6 @@ public class NavigationStepdefs {
     private static final String BASE_URL = "https://news.ycombinator.com/";
     private static ChromeDriverService service;
     private WebDriver webDriver;
-
     private HomePage homePage;
 
     public static ChromeOptions getChromeOptions() {
