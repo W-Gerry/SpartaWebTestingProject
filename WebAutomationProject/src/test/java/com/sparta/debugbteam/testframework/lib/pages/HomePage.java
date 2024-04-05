@@ -9,9 +9,9 @@ public class HomePage {
     private final WebDriver webDriver;
 
     public HomePage(WebDriver webDriver) {
-        if (!webDriver.getTitle().equals("Hacker News")) {
+        if (!webDriver.getTitle().equals("Luma")) {
             throw new IllegalStateException(
-                    "This is not the Hacker News home page, current page is: "
+                    "This is not the Luma home page, current page is: "
                             + webDriver.getCurrentUrl());
         }
         this.webDriver = webDriver;
