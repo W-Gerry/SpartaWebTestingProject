@@ -1,5 +1,7 @@
 ### Project ###
 /.idea
+/src/test/resources/chromedriver-win64
+
 
 ### Maven ###
 pom.xml.tag
