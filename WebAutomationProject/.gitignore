@@ -1,3 +1,6 @@
+### Project ###
+/.idea
+
 ### Maven ###
 pom.xml.tag
 pom.xml.releaseBackup
