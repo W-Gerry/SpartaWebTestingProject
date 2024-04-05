@@ -51,3 +51,6 @@ build/
 
 ### Mac OS ###
 .DS_Store
+
+chromedriver
+*.chromedriver

@@ -9,6 +9,7 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.hamcrest.MatcherAssert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriverService;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -16,8 +17,10 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 
 import java.io.File;
 import java.io.IOException;
+import static org.hamcrest.Matchers.*;
 
 public class LoginStepDefs {
+    private static final String DRIVER_LOCATION = "src/test/resources/chromedriver-mac-arm64/chromedriver";
     private static final String BASE_URL = "https://magento.softwaretestingboard.com/customer/account/login/";
     private LoginPage loginPage;
     private WebDriver webDriver;
@@ -56,33 +59,33 @@ public class LoginStepDefs {
         service.stop();
     }
 
-
-    @Given("the user is on the Luma store login page")
+    @Given("The user is on the Luma store login page")
     public void theUserIsOnTheLumaStoreLoginPage() {
-    webDriver.get(BASE_URL);
+        webDriver.get(BASE_URL);
     }
 
-    @When("the user enters invalid username {string} and invalid password {string}")
+    @When("The user enters invalid username {string} and invalid password {string}")
     public void theUserEntersInvalidUsernameAndInvalidPassword(String arg0, String arg1) {
     }
 
-    @And("the user clicks the login button")
+    @And("The user clicks the login button")
     public void theUserClicksTheLoginButton() {
     }
 
-    @Then("an error message {string} should be displayed")
+    @Then("An error message {string} should be displayed")
     public void anErrorMessageShouldBeDisplayed(String arg0) {
     }
 
-    @And("the user remains on the login page")
+    @And("The user remains on the login page")
     public void theUserRemainsOnTheLoginPage() {
     }
 
-    @When("the user enters valid username {string} and valid password {string}")
+    @When("The user enters valid username {string} and valid password {string}")
     public void theUserEntersValidUsernameAndValidPassword(String arg0, String arg1) {
     }
 
-    @Then("the user should be redirected to the Luma store homepage")
+    @Then("The user should be redirected to the Luma store homepage")
     public void theUserShouldBeRedirectedToTheLumaStoreHomepage() {
     }
+
 }
