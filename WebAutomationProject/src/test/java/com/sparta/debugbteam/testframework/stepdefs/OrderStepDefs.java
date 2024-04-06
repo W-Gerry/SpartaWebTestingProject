@@ -13,6 +13,11 @@ import org.openqa.selenium.chrome.ChromeDriverService;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
+import io.cucumber.java.en.And;
+import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
+
 import java.io.File;
 import java.io.IOException;
 import java.time.Duration;
@@ -59,5 +64,27 @@ public class OrderStepDefs {
     }
 
     /// TESTS ///
+    @Given("I am on a Product page")
+    public void iAmOnAProductPage() {
+    }
 
+    @And("I have selected a size")
+    public void iHaveSelectedASize() {
+    }
+
+    @And("I have selected a colour")
+    public void iHaveSelectedAColour() {
+    }
+
+    @And("I have selected a valid quantity")
+    public void iHaveSelectedAValidQuantity() {
+    }
+
+    @When("I click on to add to basket")
+    public void iClickOnToAddToBasket() {
+    }
+
+    @Then("The product will be added to my basket")
+    public void theProductWillBeAddedToMyBasket() {
+    }
 }
