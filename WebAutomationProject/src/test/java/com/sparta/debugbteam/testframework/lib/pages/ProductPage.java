@@ -47,7 +47,16 @@ public class ProductPage {
         WebElement quantityField = wait.until(s -> s.findElement(By.id(QUANTITY_FIELD_ID)));
         quantityField.sendKeys(Keys.BACK_SPACE, quantity);
     }
+
     public void addToBasket() {
-        WebElement basketButton = wait.until(s -> s.findElement(By.id(CART_BUTTON_ID)));
+        WebElement addToBasketButton = wait.until(s -> s.findElement(By.id(CART_BUTTON_ID)));
+        addToBasketButton.click();
+    }
+
+    public void goToBasket() {
+        WebElement showBasketButton = wait.until(s -> s.findElement(By.className("action showcart")));
+        showBasketButton.click();
+        WebElement viewBasketButton = wait.until(s -> s.findElement(By.className("action viewcart")));
+        viewBasketButton.click();
     }
 }
