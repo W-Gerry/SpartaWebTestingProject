@@ -4,11 +4,11 @@
 
 # Team Members
 
-John - Scrum Master
-Will - Github Owner
-Mohammed - Dev/Tester 
-Jack - Dev/Tester
-Adam - Dev/Tester
+John - Scrum Master <br>
+Will - Github Owner <br>
+Mohammed - Dev/Tester <br>
+Jack - Dev/Tester<br>
+Adam - Dev/Tester <br>
 
 # Goals of this project
 
