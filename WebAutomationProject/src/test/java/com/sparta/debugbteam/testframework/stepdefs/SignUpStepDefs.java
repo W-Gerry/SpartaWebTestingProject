@@ -34,8 +34,8 @@ import java.util.regex.Matcher;
 import static org.hamcrest.Matchers.containsString;
 
 public class SignUpStepDefs {
-    private static final String DRIVER_LOCATION = "src/test/resources/chromedriver-mac-arm64/chromedriver";
-//        private static final String DRIVER_LOCATION = "src/test/resources/chromedriver-win64/chromedriver.exe";
+    //private static final String DRIVER_LOCATION = "src/test/resources/chromedriver-mac-arm64/chromedriver";
+    private static final String DRIVER_LOCATION = "src/test/resources/chromedriver-win64/chromedriver.exe";
         private static final String BASE_URL = "https://magento.softwaretestingboard.com/customer/account/create/";
         private static ChromeDriverService service;
 
@@ -92,5 +92,7 @@ public class SignUpStepDefs {
             Thread.sleep(2000);
             MatcherAssert.assertThat(webDriver.getTitle(), containsString("My Account"));
         }
+
+
 
 }

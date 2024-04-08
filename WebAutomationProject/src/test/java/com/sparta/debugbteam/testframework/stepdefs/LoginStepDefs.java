@@ -10,7 +10,9 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.hamcrest.MatcherAssert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriverService;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.remote.RemoteWebDriver;
@@ -21,8 +23,8 @@ import java.io.IOException;
 import static org.hamcrest.Matchers.is;
 
 public class LoginStepDefs {
-    private static final String DRIVER_LOCATION = "src/test/resources/chromedriver-mac-arm64/chromedriver";
-    //    private static final String DRIVER_LOCATION = "src/test/resources/chromedriver-win64/chromedriver.exe";
+    //private static final String DRIVER_LOCATION = "src/test/resources/chromedriver-mac-arm64/chromedriver";
+    private static final String DRIVER_LOCATION = "src/test/resources/chromedriver-win64/chromedriver.exe";
     private static final String BASE_URL = "https://magento.softwaretestingboard.com/customer/account/login/";
     private WebDriver webDriver;
     private LoginPage loginPage;
@@ -96,5 +98,11 @@ public class LoginStepDefs {
     @Then("The user should be redirected to the Luma store homepage")
     public void theUserShouldBeRedirectedToTheLumaStoreHomepage() {
         MatcherAssert.assertThat(loginPage.checkLoginIsValid(), is(true));
+    }
+
+    @And("I have clicked the consent button")
+    public void iHaveClickedTheConsentButton() {
+        WebElement acceptButton = webDriver.findElement(By.className("fc-cta-consent"));
+        acceptButton.click();
     }
 }
