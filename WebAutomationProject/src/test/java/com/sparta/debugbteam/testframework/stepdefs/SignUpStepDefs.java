@@ -23,7 +23,8 @@ import java.io.IOException;
 import static org.hamcrest.Matchers.containsString;
 
 public class SignUpStepDefs {
-        private static final String DRIVER_LOCATION = "src/test/resources/chromedriver-win64/chromedriver.exe";
+    //private static final String DRIVER_LOCATION = "src/test/resources/chromedriver-mac-arm64/chromedriver";
+    private static final String DRIVER_LOCATION = "src/test/resources/chromedriver-win64/chromedriver.exe";
         private static final String BASE_URL = "https://magento.softwaretestingboard.com/customer/account/create/";
         private static ChromeDriverService service;
 
@@ -93,9 +94,11 @@ public class SignUpStepDefs {
             MatcherAssert.assertThat(webDriver.findElement(By.tagName("body")).getText(), containsString(error));
         }
 
-    @And("I have clicked the consent button")
-    public void iHaveClickedTheConsentButton() {
-        WebElement acceptButton = webDriver.findElement(By.className("fc-cta-consent"));
-        acceptButton.click();
-    }
+        @And("I have clicked the consent button")
+        public void iHaveClickedTheConsentButton() throws InterruptedException {
+            Thread.sleep(500);
+            WebElement acceptButton = webDriver.findElement(By.className("fc-primary-button"));
+            acceptButton.click();
+        }
+
 }
