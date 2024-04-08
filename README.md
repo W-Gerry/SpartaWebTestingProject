@@ -1,6 +1,6 @@
 # Luma - Web Automation Testing  - [Website Link](https://magento.softwaretestingboard.com/) 
 
-[![Build & Test](https://github.com/W-Gerry/SpartaWebTestingProject/actions/workflows/maven.yml/badge.svg?branch=dev)](https://github.com/W-Gerry/SpartaWebTestingProject/actions/workflows/maven.yml)
+[![Build & Test](https://github.com/W-Gerry/SpartaWebTestingProject/actions/workflows/maven.yml/badge.svg)](https://github.com/W-Gerry/SpartaWebTestingProject/actions/workflows/maven.yml)
 
 ![Luma-Website](https://github.com/W-Gerry/SpartaWebTestingProject/assets/147779056/53a9dfb0-b29a-4fc2-9713-e1b44b460d8e)
 
