@@ -40,11 +40,29 @@ Cucumber<br>
 
 
 # What is being 🧪Tested?
+From our user story exercise that was conducted several different areas of testing were identified:
+[User Story Board](https://www.canva.com/design/DAGBi2YoZNw/bdBjZNS42FtWt8Hz9MX7ww/edit)
 
-Navigation, User management, Searching and purchasing. 
+## Four main Epics were defined with prioritised user stories within each
+### Navigation
+- To specific pages from home page
+- To home page from specific pages
+### User Management
+- Creating an account (Valid & invalid info)
+- Logging in (Valid & invalid info)
+### Ordering
+- Add item to basket
+### Searching
+- Available item search
+- Unavailable item search
+- Search by price
 
 # 🧪Test Metrics
+A total of **28** tests were executed within this project
+- **25** tests were identified as **passing**
+- **3** tests were identified as **failing** and were added to the defect report
 
+![image](https://github.com/W-Gerry/SpartaWebTestingProject/assets/122797673/a1689f62-5756-4f24-ae84-8e6d84d9343c)
 
 # License
 Debug-B-Team is licensed under the MIT License: LICENSE.
