@@ -91,11 +91,12 @@ public class SearchStepDefs {
 
     @When("I search for items within a specific price range")
     public void iSearchForItemsWithinASpecificPriceRange() {
-        MatcherAssert.assertThat(true, is(true));
+        searchPage.goToAdvancedSearchPage();
+        searchPage.enterPriceRange(50, 75);
     }
 
     @Then("I should see only items within that price range")
     public void iShouldSeeOnlyItemsWithinThatPriceRange() {
-        MatcherAssert.assertThat(true, is(true));
+        MatcherAssert.assertThat(searchPage.checkResultsAreInRange(searchPage.getResultPrices(), 50, 75), is(true));
     }
 }
