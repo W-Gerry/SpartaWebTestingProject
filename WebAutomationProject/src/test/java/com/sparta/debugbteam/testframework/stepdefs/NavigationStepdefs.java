@@ -58,8 +58,7 @@ public class NavigationStepdefs {
 
 
     //---------------------------------------------------------------------------------------------------
-
-
+    //Navigate to pages on the Luma Website from the homepage
     @Given("I am on the Luma website")
     public void iAmOnTheLumaWebsite() {
         webDriver.get(BASE_URL);
@@ -140,4 +139,39 @@ public class NavigationStepdefs {
         MatcherAssert.assertThat(webDriver.getCurrentUrl(), Matchers.equalTo(BASE_URL + "sale.html"));
     }
 
+
+    //---------------------------------------------------------------------------------------------------
+    //Navigate to the Luma homepage from pages on the website
+    @Given("I am on the What's New page")
+    public void iAmOnTheWhatSNewPage() {
+    }
+
+    @When("I click on the Luma logo")
+    public void iClickOnTheLumaLogo() {
+
+    }
+
+    @Then("I should be taken to the Luma homepage")
+    public void iShouldBeTakenToTheLumaHomepage() {
+    }
+
+    @Given("I am on the Women's shop page")
+    public void iAmOnTheWomenSShopPage() {
+    }
+
+    @Given("I am on the Men's shop page")
+    public void iAmOnTheMenSShopPage() {
+    }
+
+    @Given("I am on the Gear shop page")
+    public void iAmOnTheGearShopPage() {
+    }
+
+    @Given("I am on the Training shop page")
+    public void iAmOnTheTrainingShopPage() {
+    }
+
+    @Given("I am on the Sale shop page")
+    public void iAmOnTheSaleShopPage() {
+    }
 }
