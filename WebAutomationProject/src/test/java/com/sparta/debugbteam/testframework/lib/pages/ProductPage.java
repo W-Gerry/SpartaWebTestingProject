@@ -13,7 +13,11 @@ public class ProductPage {
     private final WebDriver webDriver;
     private final Wait<WebDriver> wait;
 
+    private static final String EXTRA_SMALL_SIZE_ID = "option-label-size-143-item-166";
+    private static final String SMALL_SIZE_ID = "option-label-size-143-item-167";
     private static final String MEDIUM_SIZE_ID = "option-label-size-143-item-168";
+    private static final String LARGE_SIZE_ID = "option-label-size-143-item-169";
+    private static final String EXTRA_LARGE_SIZE_ID = "option-label-size-143-item-170";
     private static final String BLUE_ID = "option-label-color-93-item-50";
     private static final String QUANTITY_FIELD_ID = "qty";
     private static final String CART_BUTTON_ID = "product-addtocart-button";
