@@ -75,6 +75,12 @@ public class OrderStepDefs {
         productPage = new ProductPage(webDriver);
     }
 
+    @And("I have clicked the consent button")
+    public void iHaveClickedTheConsentButton() {
+        WebElement acceptButton = webDriver.findElement(By.className("fc-cta-consent"));
+        acceptButton.click();
+    }
+
     @And("I have selected a size")
     public void iHaveSelectedASize() {
         productPage.selectSize();
@@ -85,9 +91,27 @@ public class OrderStepDefs {
         productPage.selectColour();
     }
 
-    @And("I have selected a valid quantity")
-    public void iHaveSelectedAValidQuantity() {
+    @And("I have selected a quantity")
+    public void iHaveSelectedAQuantity() {
         productPage.selectQuantity("1");
+    }
+
+    @And("I have not selected a size")
+    public void iHaveNotSelectedASize() {
+    }
+
+    @And("I have not selected a colour")
+    public void iHaveNotSelectedAColour() {
+    }
+
+    @And("I have selected a quantity of zero")
+    public void iHaveSelectedAQuantityOfZero() {
+        productPage.selectQuantity("0");
+    }
+
+    @And("I have not selected a quantity")
+    public void iHaveNotSelectedAQuantity() {
+        productPage.selectQuantity("");
     }
 
     @When("I click on to add to basket")
@@ -95,20 +119,77 @@ public class OrderStepDefs {
         productPage.addToBasket();
     }
 
+    @Then("I will see the success message")
+    public void iWillSeeTheSuccessMessage() {
+        MatcherAssert.assertThat(webDriver.findElement(By.className("message-success")).getText(), Matchers.containsString("You added Helios Endurance Tank"));
+    }
+
+    @Then("I will see the size failure message")
+    public void iWillSeeTheSizeFailureMessage() {
+        MatcherAssert.assertThat(webDriver.findElement(By.id("super_attribute[143]-error")).getText(), Matchers.containsString("This is a required field"));
+    }
+
+    @Then("I will see the colour failure message")
+    public void iWillSeeTheColourFailureMessage() {
+        MatcherAssert.assertThat(webDriver.findElement(By.id("super_attribute[93]-error")).getText(), Matchers.containsString("This is a required field"));
+    }
+
+    @Then("I will see the zero quantity failure message")
+    public void iWillSeeTheZeroQuantityFailureMessage() {
+        MatcherAssert.assertThat(webDriver.findElement(By.id("qty-error")).getText(), Matchers.containsString("Please enter a quantity greater than 0."));
+    }
+
+    @Then("I will see the empty quantity failure message")
+    public void iWillSeeTheEmptyQuantityFailureMessage() {
+        MatcherAssert.assertThat(webDriver.findElement(By.id("qty-error")).getText(), Matchers.containsString("Please enter a valid number in this field."));
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 //    @Then("The product will be added to my basket")
 //    public void theProductWillBeAddedToMyBasket(String message) {
 //        MatcherAssert.assertThat(webDriver.findElement(By.className("message-success")).getText(), Matchers.containsString(message));
 //        MatcherAssert.assertThat(basketPage.getProductInfo("//b[contains(., 'Helios Endurance Tank')]"), Matchers.containsString("Helios Endurance Tank"));
 //    }
 
-    @And("I have clicked the consent button")
-    public void iHaveClickedTheConsentButton() {
-        WebElement acceptButton = webDriver.findElement(By.className("fc-cta-consent"));
-        acceptButton.click();
-    }
 
-    @Then("The product will be added to my basket with a success message")
-    public void theProductWillBeAddedToMyBasketWithASuccessMessage() {
+
+//    @Then("Then I will see the message")
+//    public void thenWillSeeTheMessage() {
+//        MatcherAssert.assertThat(webDriver.findElement(By.className("message-success")).getText(), Matchers.containsString("You added Helios Endurance Tank"));
+//    }
+
+    @Then("I will see the {string}")
+    public void iWillSeeThe(String message) {
         MatcherAssert.assertThat(webDriver.findElement(By.className("message-success")).getText(), Matchers.containsString("You added Helios Endurance Tank"));
     }
+
+    @Then("I will see the success {string}")
+    public void iWillSeeTheSuccess(String arg0) {
+
+    }
+
+    @Then("I will see the failure {string}")
+    public void iWillSeeTheFailure(String arg0) {
+    }
+
+
+
 }
