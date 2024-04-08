@@ -1,6 +1,6 @@
 package com.sparta.debugbteam.testframework.stepdefs;
 
-import com.sparta.debugbteam.testframework.lib.pages.HomePage;
+import com.sparta.debugbteam.testframework.lib.pages.*;
 
 import io.cucumber.java.*;
 import io.cucumber.java.en.*;
@@ -78,54 +78,66 @@ public class NavigationStepdefs {
     // Navigate to the What's New page
     @When("I navigate to the What's New page")
     public void iNavigateToTheWhatSNewPage() {
+        WhatsNewPage whatsNewPage = homePage.goToWhatsNewPage();
     }
 
     @Then("I should see the What's New page")
     public void iShouldSeeTheWhatSNewPage() {
+        MatcherAssert.assertThat(webDriver.getCurrentUrl(), Matchers.equalTo(BASE_URL + "what-is-new.html"));
     }
 
     // Navigate to the Women page
     @When("I navigate to the Women page")
     public void iNavigateToTheWomenPage() {
+        WomenShopPage womenShopPage = homePage.goToWomenShopPage();
     }
 
     @Then("I should see the Women page")
     public void iShouldSeeTheWomenPage() {
+        MatcherAssert.assertThat(webDriver.getCurrentUrl(), Matchers.equalTo(BASE_URL + "women.html"));
     }
 
     // Navigate to the Men page
     @When("I navigate to the Men page")
     public void iNavigateToTheMenPage() {
+        MenShopPage menShopPage = homePage.goToMenShopPage();
     }
 
     @Then("I should see the Men page")
     public void iShouldSeeTheMenPage() {
+        MatcherAssert.assertThat(webDriver.getCurrentUrl(), Matchers.equalTo(BASE_URL + "men.html"));
     }
 
     // Navigate to the Gear page
     @When("I navigate to the Gear page")
     public void iNavigateToTheGearPage() {
+        GearShopPage gearShopPage = homePage.goToGearShopPage();
     }
 
     @Then("I should see the Gear page")
     public void iShouldSeeTheGearPage() {
+        MatcherAssert.assertThat(webDriver.getCurrentUrl(), Matchers.equalTo(BASE_URL + "gear.html"));
     }
 
     // Navigate to the Training page
     @When("I navigate to the Training page")
     public void iNavigateToTheTrainingPage() {
+        TrainingShopPage trainingShopPage = homePage.goToTrainingShopPage();
     }
 
     @Then("I should see the Training page")
     public void iShouldSeeTheTrainingPage() {
+        MatcherAssert.assertThat(webDriver.getCurrentUrl(), Matchers.equalTo(BASE_URL + "training.html"));
     }
 
     // Navigate to the Sale page
     @When("I navigate to the Sale page")
     public void iNavigateToTheSalePage() {
+        SalePage salePage = homePage.goToSalePage();
     }
 
     @Then("I should see the Sale page")
     public void iShouldSeeTheSalePage() {
+        MatcherAssert.assertThat(webDriver.getCurrentUrl(), Matchers.equalTo(BASE_URL + "sale.html"));
     }
 }
