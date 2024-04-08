@@ -5,12 +5,12 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 
-public class HomePage {
+public class HomePage implements Page{
 
     private final WebDriver webDriver;
 
     public HomePage(WebDriver webDriver) {
-        if (!webDriver.getTitle().equals("Home Page")) {
+        if (!webDriver.getCurrentUrl().equals("https://magento.softwaretestingboard.com/")) {
             throw new IllegalStateException(
                     "This is not the Luma home page, current page is: "
                             + webDriver.getCurrentUrl());

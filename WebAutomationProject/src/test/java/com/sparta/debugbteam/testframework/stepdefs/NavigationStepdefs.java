@@ -20,16 +20,20 @@ public class NavigationStepdefs {
     private static final String DRIVER_LOCATION = "src/test/resources/chromedriver-win64/chromedriver.exe";
     private static final String BASE_URL = "https://magento.softwaretestingboard.com/";
     private static ChromeDriverService service;
+
     private WebDriver webDriver;
-
+    private Page currentPage;
     private HomePage homePage;
-    private WhatsNewPage whatsNewPage;
-    private WomenShopPage womenShopPage;
-    private MenShopPage menShopPage;
-    private GearShopPage gearShopPage;
-    private TrainingShopPage trainingShopPage;
-    private SalePage salePage;
 
+    public NavigationStepdefs(WebDriver webDriver, Page currentPage, HomePage homePage) {
+        this.webDriver = webDriver;
+        this.currentPage = currentPage;
+        this.homePage = homePage;
+    }
+
+
+    public NavigationStepdefs() {
+    }
 
     public static ChromeOptions getChromeOptions() {
         ChromeOptions options = new ChromeOptions();
@@ -54,6 +58,7 @@ public class NavigationStepdefs {
         //webDriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
     }
 
+
     @After
     public void afterEach() {
         webDriver.quit();
@@ -71,6 +76,7 @@ public class NavigationStepdefs {
     public void iAmOnTheLumaWebsite() {
         webDriver.get(BASE_URL);
         homePage = new HomePage(webDriver);
+        currentPage = new HomePage(webDriver);
     }
 
     @And("I have accepted the cookie policy")
@@ -84,7 +90,7 @@ public class NavigationStepdefs {
     // Navigate to the What's New page
     @When("I navigate to the What's New page")
     public void iNavigateToTheWhatSNewPage() {
-        WhatsNewPage whatsNewPage = homePage.goToWhatsNewPage();
+        currentPage = homePage.goToWhatsNewPage();
     }
 
     @Then("I should see the What's New page")
@@ -139,7 +145,7 @@ public class NavigationStepdefs {
     // Navigate to the Sale page
     @When("I navigate to the Sale page")
     public void iNavigateToTheSalePage() {
-        SalePage salePage = homePage.goToSalePage();
+        currentPage = homePage.goToSalePage();
     }
 
     @Then("I should see the Sale page")
@@ -153,42 +159,42 @@ public class NavigationStepdefs {
     @Given("I am on the What's New page")
     public void iAmOnTheWhatSNewPage() {
         webDriver.get(BASE_URL + "what-is-new.html");
-        whatsNewPage = new WhatsNewPage(webDriver);
-    }
-
-    @When("I click on the Luma logo")
-    public void iClickOnTheLumaLogo() {
-        whatsNewPage.goToHomePage();
+        currentPage = new WhatsNewPage(webDriver);
     }
 
     @Given("I am on the Women's shop page")
     public void iAmOnTheWomenSShopPage() {
         webDriver.get(BASE_URL + "women.html");
-        womenShopPage = new WomenShopPage(webDriver);
+        currentPage = new WomenShopPage(webDriver);
     }
 
     @Given("I am on the Men's shop page")
     public void iAmOnTheMenSShopPage() {
         webDriver.get(BASE_URL + "men.html");
-        menShopPage = new MenShopPage(webDriver);
+        currentPage = new MenShopPage(webDriver);
     }
 
     @Given("I am on the Gear shop page")
     public void iAmOnTheGearShopPage() {
         webDriver.get(BASE_URL + "gear.html");
-        gearShopPage = new GearShopPage(webDriver);
+        currentPage = new GearShopPage(webDriver);
     }
 
     @Given("I am on the Training shop page")
     public void iAmOnTheTrainingShopPage() {
         webDriver.get(BASE_URL + "training.html");
-        trainingShopPage = new TrainingShopPage(webDriver);
+        currentPage = new TrainingShopPage(webDriver);
     }
 
     @Given("I am on the Sale shop page")
     public void iAmOnTheSaleShopPage() {
         webDriver.get(BASE_URL + "sale.html");
-        salePage = new SalePage(webDriver);
+        currentPage = new SalePage(webDriver);
+    }
+
+    @When("I click on the Luma logo")
+    public void iClickOnTheLumaLogo() {
+        currentPage.goToHomePage();
     }
 
     @Then("I should be taken to the Luma homepage")

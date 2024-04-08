@@ -3,7 +3,7 @@ package com.sparta.debugbteam.testframework.lib.pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-public class TrainingShopPage {
+public class TrainingShopPage implements Page {
     private final WebDriver webDriver;
     public TrainingShopPage(WebDriver webDriver) {
         if (!webDriver.getTitle().contains("Training")) {
