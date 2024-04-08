@@ -19,9 +19,9 @@ public class ProductPage {
     private static final String CART_BUTTON_ID = "product-addtocart-button";
 
 
-    public ProductPage(WebDriver webDriver, Wait<WebDriver> wait) {
-        if (!webDriver.getTitle().contains("All | Search powered by Algolia")) {
-            throw new IllegalStateException("This is not the search Page," +
+    public ProductPage(WebDriver webDriver) {
+        if (!webDriver.getTitle().contains("Helios Endurance Tank")) {
+            throw new IllegalStateException("This is not the correct Product Page," +
                     " current page is: " + webDriver.getCurrentUrl());
         }
 
@@ -53,10 +53,16 @@ public class ProductPage {
         addToBasketButton.click();
     }
 
-    public void goToBasket() {
-        WebElement showBasketButton = wait.until(s -> s.findElement(By.className("action showcart")));
+    public BasketPage goToBasket() {
+        showBasketMenu();
+//        WebElement viewBasketButton = wait.until(s -> s.findElement(By.className("action viewcart")));
+//        viewBasketButton.click();
+        webDriver.findElement(By.className("viewcart")).click();
+        return new BasketPage(webDriver);
+    }
+
+    private void showBasketMenu() {
+        WebElement showBasketButton = wait.until(s -> s.findElement(By.className("showcart")));
         showBasketButton.click();
-        WebElement viewBasketButton = wait.until(s -> s.findElement(By.className("action viewcart")));
-        viewBasketButton.click();
     }
 }
