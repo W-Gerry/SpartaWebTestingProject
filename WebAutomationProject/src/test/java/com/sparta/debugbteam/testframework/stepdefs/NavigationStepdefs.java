@@ -6,7 +6,9 @@ import io.cucumber.java.*;
 import io.cucumber.java.en.*;
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriverService;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.remote.RemoteWebDriver;
@@ -16,7 +18,7 @@ import java.io.IOException;
 public class NavigationStepdefs {
 
     private static final String DRIVER_LOCATION = "src/test/resources/chromedriver-win64/chromedriver.exe";
-    private static final String BASE_URL = "https://news.ycombinator.com/";
+    private static final String BASE_URL = "https://magento.softwaretestingboard.com/";
     private static ChromeDriverService service;
     private WebDriver webDriver;
     private HomePage homePage;
@@ -24,7 +26,7 @@ public class NavigationStepdefs {
     public static ChromeOptions getChromeOptions() {
         ChromeOptions options = new ChromeOptions();
         //options.addArguments("--start-maximized");
-        options.addArguments("--headless");
+        //options.addArguments("--headless");
         options.addArguments("--remote-allow-origins=*");
         return options;
     }
@@ -64,16 +66,13 @@ public class NavigationStepdefs {
         homePage = new HomePage(webDriver);
     }
 
-    // Navigate to the homepage
-    @When("I navigate to the homepage")
-    public void iNavigateToTheHomepage() {
-        homePage.goToHomePage();
+    @And("I have accepted the cookie policy")
+    public void iHaveAcceptedTheCookiePolicy() {
+            WebElement acceptButton = webDriver.findElement(By.className("fc-cta-consent"));
+            acceptButton.click();
     }
 
-    @Then("I should see the homepage")
-    public void iShouldSeeTheHomepage() {
-        MatcherAssert.assertThat(webDriver.getCurrentUrl(), Matchers.equalTo(BASE_URL));
-    }
+
 
     // Navigate to the What's New page
     @When("I navigate to the What's New page")
@@ -140,4 +139,5 @@ public class NavigationStepdefs {
     public void iShouldSeeTheSalePage() {
         MatcherAssert.assertThat(webDriver.getCurrentUrl(), Matchers.equalTo(BASE_URL + "sale.html"));
     }
+
 }

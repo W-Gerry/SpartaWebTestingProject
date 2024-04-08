@@ -1,9 +1,8 @@
 Feature: As a user, I want to be able to navigate the Luma website.
 
-  Scenario: Navigate to the Luma website
+  Background:
     Given I am on the Luma website
-    When I navigate to the homepage
-    Then I should see the homepage
+    And I have accepted the cookie policy
 
   Scenario: Navigate to the What's New page
     Given I am on the Luma website

@@ -10,7 +10,7 @@ public class HomePage {
     private final WebDriver webDriver;
 
     public HomePage(WebDriver webDriver) {
-        if (!webDriver.getTitle().equals("Luma")) {
+        if (!webDriver.getTitle().equals("Home Page")) {
             throw new IllegalStateException(
                     "This is not the Luma home page, current page is: "
                             + webDriver.getCurrentUrl());
@@ -19,7 +19,7 @@ public class HomePage {
     }
 
     public HomePage goToHomePage() {
-        webDriver.findElement(By.linkText("home")).click();
+        webDriver.findElement(By.className("logo")).click();
         return new HomePage(webDriver);
     }
 
