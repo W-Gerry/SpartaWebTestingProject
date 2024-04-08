@@ -22,7 +22,7 @@ public class TrainingShopPage {
     }
 
     public HomePage goToHomePage() {
-        webDriver.findElement(By.linkText("home")).click();
+        webDriver.findElement(By.className("logo")).click();
         return new HomePage(webDriver);
     }
 
