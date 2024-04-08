@@ -21,7 +21,15 @@ public class NavigationStepdefs {
     private static final String BASE_URL = "https://magento.softwaretestingboard.com/";
     private static ChromeDriverService service;
     private WebDriver webDriver;
+
     private HomePage homePage;
+    private WhatsNewPage whatsNewPage;
+    private WomenShopPage womenShopPage;
+    private MenShopPage menShopPage;
+    private GearShopPage gearShopPage;
+    private TrainingShopPage trainingShopPage;
+    private SalePage salePage;
+
 
     public static ChromeOptions getChromeOptions() {
         ChromeOptions options = new ChromeOptions();
@@ -144,34 +152,48 @@ public class NavigationStepdefs {
     //Navigate to the Luma homepage from pages on the website
     @Given("I am on the What's New page")
     public void iAmOnTheWhatSNewPage() {
+        webDriver.get(BASE_URL + "what-is-new.html");
+        whatsNewPage = new WhatsNewPage(webDriver);
     }
 
     @When("I click on the Luma logo")
     public void iClickOnTheLumaLogo() {
-
-    }
-
-    @Then("I should be taken to the Luma homepage")
-    public void iShouldBeTakenToTheLumaHomepage() {
+        whatsNewPage.goToHomePage();
     }
 
     @Given("I am on the Women's shop page")
     public void iAmOnTheWomenSShopPage() {
+        webDriver.get(BASE_URL + "women.html");
+        womenShopPage = new WomenShopPage(webDriver);
     }
 
     @Given("I am on the Men's shop page")
     public void iAmOnTheMenSShopPage() {
+        webDriver.get(BASE_URL + "men.html");
+        menShopPage = new MenShopPage(webDriver);
     }
 
     @Given("I am on the Gear shop page")
     public void iAmOnTheGearShopPage() {
+        webDriver.get(BASE_URL + "gear.html");
+        gearShopPage = new GearShopPage(webDriver);
     }
 
     @Given("I am on the Training shop page")
     public void iAmOnTheTrainingShopPage() {
+        webDriver.get(BASE_URL + "training.html");
+        trainingShopPage = new TrainingShopPage(webDriver);
     }
 
     @Given("I am on the Sale shop page")
     public void iAmOnTheSaleShopPage() {
+        webDriver.get(BASE_URL + "sale.html");
+        salePage = new SalePage(webDriver);
     }
+
+    @Then("I should be taken to the Luma homepage")
+    public void iShouldBeTakenToTheLumaHomepage() {
+        MatcherAssert.assertThat(webDriver.getCurrentUrl(), Matchers.equalTo(BASE_URL));
+    }
+
 }
