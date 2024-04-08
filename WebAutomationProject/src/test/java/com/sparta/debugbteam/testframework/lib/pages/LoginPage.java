@@ -30,6 +30,7 @@ public class LoginPage {
     }
 
     public LoginPage signUp(String firstName, String lastName, String email, String password) throws InterruptedException {
+        Thread.sleep(2000);
         webDriver.findElement(By.id("firstname")).sendKeys(firstName, Keys.TAB);
         Thread.sleep(200);
         webDriver.findElement(By.id("lastname")).sendKeys(lastName, Keys.TAB);

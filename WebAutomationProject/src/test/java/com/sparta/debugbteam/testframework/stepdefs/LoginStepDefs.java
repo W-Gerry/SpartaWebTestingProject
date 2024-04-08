@@ -32,7 +32,7 @@ public class LoginStepDefs {
 
     public static ChromeOptions getChromeOptions() {
         ChromeOptions options = new ChromeOptions();
-//        options.addArguments("--start-maximized");
+        //options.addArguments("--start-maximized");
         options.addArguments("--headless");
         options.addArguments("--remote-allow-origins=*");
 //        options.setImplicitWaitTimeout(Duration.ofSeconds(10));
@@ -64,13 +64,16 @@ public class LoginStepDefs {
     }
 
     @Given("The user is on the Luma store login page")
-    public void theUserIsOnTheLumaStoreLoginPage() {
+    public void theUserIsOnTheLumaStoreLoginPage() throws InterruptedException {
         webDriver.get(BASE_URL);
+        loginPage = new LoginPage(webDriver);
+
     }
+
 
     @When("The user enters invalid username {string} and invalid password {string}")
     public void theUserEntersInvalidUsernameAndInvalidPassword(String invalidUsername, String invalidPassword) throws InterruptedException {
-        loginPage = new LoginPage(webDriver);
+
         loginPage.login(invalidUsername, invalidPassword);
     }
 
@@ -80,7 +83,8 @@ public class LoginStepDefs {
     }
 
     @Then("An error message {string} should be displayed")
-    public void anErrorMessageShouldBeDisplayed(String arg0) {
+    public void anErrorMessageShouldBeDisplayed(String arg0) throws InterruptedException {
+        Thread.sleep(2000);
         MatcherAssert.assertThat(loginPage.isEmailInvalid() || loginPage.isPasswordInvalid(), is(true));
     }
 
@@ -100,9 +104,12 @@ public class LoginStepDefs {
         MatcherAssert.assertThat(loginPage.checkLoginIsValid(), is(true));
     }
 
-    @And("I have clicked the consent button")
-    public void iHaveClickedTheConsentButton() {
-        WebElement acceptButton = webDriver.findElement(By.className("fc-cta-consent"));
+    @And("I have clicked the consent button login")
+    public void iHaveClickedTheConsentButton() throws InterruptedException {
+        Thread.sleep(500);
+        WebElement acceptButton = webDriver.findElement(By.className("fc-primary-button"));
         acceptButton.click();
     }
+
+
 }
