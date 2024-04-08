@@ -12,24 +12,13 @@ import io.cucumber.java.en.When;
 import org.hamcrest.MatcherAssert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriverService;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.remote.RemoteWebDriver;
-
 import java.io.File;
 import java.io.IOException;
-import io.cucumber.java.After;
-import io.cucumber.java.AfterAll;
-import io.cucumber.java.Before;
-import io.cucumber.java.BeforeAll;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriverService;
-import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.remote.RemoteWebDriver;
 
-import java.io.File;
-import java.io.IOException;
-import java.util.regex.Matcher;
 
 import static org.hamcrest.Matchers.containsString;
 
@@ -57,6 +46,7 @@ public class SignUpStepDefs {
                     .usingAnyFreePort()
                     .build();
             service.start();
+
         }
 
         @Before
@@ -92,4 +82,20 @@ public class SignUpStepDefs {
             MatcherAssert.assertThat(webDriver.getTitle(), containsString("My Account"));
         }
 
+        @When("I enter {string}, {string}, {string}, {string} and click enter")
+        public void iEnterAndClickEnter(String firstName, String lastName, String email, String password) throws InterruptedException {
+            createAccount.signUp(firstName,lastName,email,password);
+        }
+
+        @Then("I will see the message {string}")
+        public void iWillSeeTheMessage(String error) throws InterruptedException {
+            Thread.sleep(2000);
+            MatcherAssert.assertThat(webDriver.findElement(By.tagName("body")).getText(), containsString(error));
+        }
+
+    @And("I have clicked the consent button")
+    public void iHaveClickedTheConsentButton() {
+        WebElement acceptButton = webDriver.findElement(By.className("fc-cta-consent"));
+        acceptButton.click();
+    }
 }
