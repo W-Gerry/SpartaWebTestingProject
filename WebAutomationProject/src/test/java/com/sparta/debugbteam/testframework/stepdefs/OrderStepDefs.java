@@ -39,8 +39,8 @@ public class OrderStepDefs {
 
     public static ChromeOptions getChromeOptions() {
         ChromeOptions options = new ChromeOptions();
-//        options.addArguments("--headless");
-        options.addArguments("--start-maximised");
+        options.addArguments("--headless");
+//        options.addArguments("--start-maximised");
         options.addArguments("--remote-allow-origins=*");
         options.setImplicitWaitTimeout(Duration.ofSeconds(10));
 
