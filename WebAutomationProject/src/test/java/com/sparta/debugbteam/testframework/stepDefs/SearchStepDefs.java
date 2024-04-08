@@ -1,15 +1,18 @@
-package com.sparta.debugbteam.testframework.stepDefs;
+package com.sparta.debugbteam.testframework.stepdefs;
 
 import com.sparta.debugbteam.testframework.lib.pages.SearchPage;
 import io.cucumber.java.After;
 import io.cucumber.java.AfterAll;
 import io.cucumber.java.Before;
 import io.cucumber.java.BeforeAll;
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.hamcrest.MatcherAssert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriverService;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.remote.RemoteWebDriver;
@@ -20,8 +23,8 @@ import java.io.IOException;
 import static org.hamcrest.Matchers.is;
 
 public class SearchStepDefs {
-    private static final String DRIVER_LOCATION = "src/test/resources/chromedriver-mac-arm64/chromedriver";
-    //        private static final String DRIVER_LOCATION = "src/test/resources/chromedriver-win64/chromedriver.exe";
+//    private static final String DRIVER_LOCATION = "src/test/resources/chromedriver-mac-arm64/chromedriver";
+            private static final String DRIVER_LOCATION = "src/test/resources/chromedriver-win64/chromedriver.exe";
     private static final String BASE_URL = "https://magento.softwaretestingboard.com/";
     private static ChromeDriverService service;
     private SearchPage searchPage;
@@ -65,6 +68,12 @@ public class SearchStepDefs {
     public void iAmOnTheMagentoSoftwareTestingBoardWebsite() {
         searchPage.goToHomePage();
         MatcherAssert.assertThat(searchPage.getUrl(), is(BASE_URL));
+    }
+
+    @And("I have clicked the consent button search")
+    public void iHaveClickedTheConsentButton() {
+        WebElement acceptButton = webDriver.findElement(By.className("fc-cta-consent"));
+        acceptButton.click();
     }
 
     @When("I search for available items")

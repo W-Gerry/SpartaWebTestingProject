@@ -4,6 +4,7 @@ Feature: Product Search Functionality
 
   Background:
     Given I am on the Magento Software Testing Board website
+    And I have clicked the consent button search
 
   Scenario: Search for items that are available
     When I search for available items
