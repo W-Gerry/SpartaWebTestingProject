@@ -7,16 +7,14 @@ import org.openqa.selenium.support.ui.Wait;
 
 public class BasketPage {
     private final WebDriver webDriver;
-    private final Wait<WebDriver> wait;
 
-    public BasketPage(WebDriver webDriver, Wait<WebDriver> wait) {
+    public BasketPage(WebDriver webDriver) {
         if (!webDriver.getTitle().contains("https://magento.softwaretestingboard.com/checkout/cart/")) {
             throw new IllegalStateException("This is not the Basket Page," +
                     " current page is: " + webDriver.getCurrentUrl());
         }
 
         this.webDriver = webDriver;
-        this.wait = wait;
     }
 
     public String getProductInfo(String productName) {
@@ -25,12 +23,12 @@ public class BasketPage {
     }
 
     public void removeItemFromBasket() {
-        WebElement deleteButton =  webDriver.findElement(By.className("action action-delete"));
+        WebElement deleteButton =  webDriver.findElement(By.className("action-delete"));
         deleteButton.click();
     }
 
     public void goToCheckout() {
-        WebElement checkoutButton =  webDriver.findElement(By.className("action primary checkout"));
+        WebElement checkoutButton =  webDriver.findElement(By.className("checkout"));
         checkoutButton.click();
     }
 }
