@@ -75,7 +75,7 @@ public class OrderStepDefs {
         productPage = new ProductPage(webDriver);
     }
 
-    @And("I have clicked the consent button")
+    @And("I have clicked the consent button order")
     public void iHaveClickedTheConsentButton() {
         WebElement acceptButton = webDriver.findElement(By.className("fc-cta-consent"));
         acceptButton.click();
