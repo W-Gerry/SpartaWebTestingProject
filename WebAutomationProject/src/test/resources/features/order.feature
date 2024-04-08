@@ -7,4 +7,4 @@ Feature: As a User, I want to add items to my basket and process the purchase
     And I have selected a colour
     And I have selected a valid quantity
     When I click on to add to basket
-    Then The product will be added to my basket
+    Then The product will be added to my basket with a success message

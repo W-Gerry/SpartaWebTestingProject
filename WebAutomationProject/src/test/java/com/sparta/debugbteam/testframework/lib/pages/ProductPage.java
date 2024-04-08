@@ -45,7 +45,8 @@ public class ProductPage {
 
     public void selectQuantity(String quantity) {
         WebElement quantityField = wait.until(s -> s.findElement(By.id(QUANTITY_FIELD_ID)));
-        quantityField.sendKeys(Keys.BACK_SPACE, quantity);
+        quantityField.click();
+        quantityField.sendKeys(Keys.BACK_SPACE, Keys.DELETE, quantity);
     }
 
     public void addToBasket() {

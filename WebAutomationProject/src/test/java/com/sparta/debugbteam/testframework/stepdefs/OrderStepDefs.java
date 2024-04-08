@@ -95,15 +95,20 @@ public class OrderStepDefs {
         productPage.addToBasket();
     }
 
-    @Then("The product will be added to my basket")
-    public void theProductWillBeAddedToMyBasket() {
-        MatcherAssert.assertThat(webDriver.findElement(By.className("message-success")).getText(), Matchers.containsString("You added Helios Endurance Tank"));
+//    @Then("The product will be added to my basket")
+//    public void theProductWillBeAddedToMyBasket(String message) {
+//        MatcherAssert.assertThat(webDriver.findElement(By.className("message-success")).getText(), Matchers.containsString(message));
 //        MatcherAssert.assertThat(basketPage.getProductInfo("//b[contains(., 'Helios Endurance Tank')]"), Matchers.containsString("Helios Endurance Tank"));
-    }
+//    }
 
     @And("I have clicked the consent button")
     public void iHaveClickedTheConsentButton() {
         WebElement acceptButton = webDriver.findElement(By.className("fc-cta-consent"));
         acceptButton.click();
+    }
+
+    @Then("The product will be added to my basket with a success message")
+    public void theProductWillBeAddedToMyBasketWithASuccessMessage() {
+        MatcherAssert.assertThat(webDriver.findElement(By.className("message-success")).getText(), Matchers.containsString("You added Helios Endurance Tank"));
     }
 }
