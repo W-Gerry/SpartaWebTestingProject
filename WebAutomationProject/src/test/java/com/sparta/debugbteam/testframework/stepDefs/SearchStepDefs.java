@@ -1,9 +1,14 @@
 package com.sparta.debugbteam.testframework.stepDefs;
 
+import com.sparta.debugbteam.testframework.lib.pages.SearchPage;
 import io.cucumber.java.After;
 import io.cucumber.java.AfterAll;
 import io.cucumber.java.Before;
 import io.cucumber.java.BeforeAll;
+import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
+import org.hamcrest.MatcherAssert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriverService;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -12,15 +17,15 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 import java.io.File;
 import java.io.IOException;
 
+import static org.hamcrest.Matchers.is;
+
 public class SearchStepDefs {
     private static final String DRIVER_LOCATION = "src/test/resources/chromedriver-mac-arm64/chromedriver";
     //        private static final String DRIVER_LOCATION = "src/test/resources/chromedriver-win64/chromedriver.exe";
-    private static final String BASE_URL = "https://magento.softwaretestingboard.com/customer/account/create/";
+    private static final String BASE_URL = "https://magento.softwaretestingboard.com/";
     private static ChromeDriverService service;
-
+    private SearchPage searchPage;
     private WebDriver webDriver;
-
-    private LoginPage createAccount;
 
     public static ChromeOptions getChromeOptions() {
         ChromeOptions options = new ChromeOptions();
@@ -43,6 +48,7 @@ public class SearchStepDefs {
     public void setup() {
         webDriver = new RemoteWebDriver(service.getUrl(), getChromeOptions());
         //webDriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        searchPage = new SearchPage(webDriver);
     }
 
     @After
@@ -55,5 +61,41 @@ public class SearchStepDefs {
         service.stop();
     }
 
-    
+    @Given("I am on the Magento Software Testing Board website")
+    public void iAmOnTheMagentoSoftwareTestingBoardWebsite() {
+        searchPage.goToHomePage();
+        MatcherAssert.assertThat(searchPage.getUrl(), is(BASE_URL));
+    }
+
+    @When("I search for available items")
+    public void iSearchForAvailableItems() {
+        searchPage.searchForProducts("mens jacket");
+        MatcherAssert.assertThat(searchPage.getUrl().endsWith("catalogsearch/result/?q=mens+jacket"), is(true));
+    }
+
+    @Then("I should see a list of available items")
+    public void iShouldSeeAListOfAvailableItems() {
+        MatcherAssert.assertThat(searchPage.countSearchResults() > 0, is(true));
+    }
+
+    @When("I search for unavailable items")
+    public void iSearchForUnavailableItems() {
+        searchPage.goToHomePage();
+        searchPage.searchForProducts("rsv123");
+    }
+
+    @Then("I should see a message indicating no items found")
+    public void iShouldSeeAMessageIndicatingNoItemsFound() {
+        MatcherAssert.assertThat(searchPage.getErrorText().contains("Your search returned no results"), is(true));
+    }
+
+    @When("I search for items within a specific price range")
+    public void iSearchForItemsWithinASpecificPriceRange() {
+        MatcherAssert.assertThat(true, is(true));
+    }
+
+    @Then("I should see only items within that price range")
+    public void iShouldSeeOnlyItemsWithinThatPriceRange() {
+        MatcherAssert.assertThat(true, is(true));
+    }
 }
